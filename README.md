@@ -210,8 +210,6 @@ Status: ✅ Normal
 - [NestJS](https://nestjs.com/) - Node.js framework
 - [TypeORM](https://typeorm.io/) - Database ORM
 - [PostgreSQL](https://www.postgresql.org/) - Relational database
-- [Jest](https://jestjs.io/) - Testing framework
 
-## License
 
-UNLICENSED
+
