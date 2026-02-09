@@ -5,17 +5,7 @@ import { DataSource } from 'typeorm';
 export class AnalyticsService {
   constructor(private dataSource: DataSource) {}
 
-  /**
-   * Get 24-hour performance summary for a vehicle
-   * 
-   * Returns:
-   * - total_dc: Total kWh delivered to battery (DC) in 24h
-   * - total_ac: Total kWh consumed from grid (AC) in 24h
-   * - efficiency_ratio: DC / AC (should be >= 0.85 for healthy system)
-   * - avg_battery_temp: Average battery temperature
-   * - record_count: Number of telemetry records analyzed
-   * - alert: Warning if efficiency below 85% (power loss indicates fault)
-   */
+ 
   async getPerformance(vehicleId: string) {
     const result = await this.dataSource.query(
       `

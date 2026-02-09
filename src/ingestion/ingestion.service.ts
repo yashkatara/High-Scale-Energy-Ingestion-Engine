@@ -25,11 +25,6 @@ export class IngestionService {
     private vehicleMeterMapRepo: Repository<VehicleMeterMap>,
   ) {}
 
-  /**
-   * Ingest meter telemetry from Smart Meter
-   * Path: INSERT into history (append-only audit trail)
-   * Path: UPSERT into current status (atomic update for live dashboard)
-   */
   async ingestMeter(data: MeterIngestionDto) {
     const timestamp = new Date(data.timestamp);
 
@@ -59,12 +54,7 @@ export class IngestionService {
     };
   }
 
-  /**
-   * Ingest vehicle telemetry from EV Charger
-   * Path: INSERT into history (append-only audit trail)
-   * Path: UPSERT into current status (atomic update for live dashboard)
-   * Also calculates and stores efficiency ratio
-   */
+ 
   async ingestVehicle(data: VehicleIngestionDto) {
     const timestamp = new Date(data.timestamp);
 
@@ -123,10 +113,6 @@ export class IngestionService {
     throw new BadRequestException('Invalid payload: Must contain either meterId (meter) or vehicleId (vehicle) with corresponding fields');
   }
 
-  /**
-   * Register mapping between vehicle and meter
-   * Used for joining AC consumed (meter) with DC delivered (vehicle)
-   */
   async registerVehicleMeterMapping(vehicleId: string, meterId: string) {
     await this.vehicleMeterMapRepo.upsert(
       {
